@@ -1,0 +1,70 @@
+/*Estilos generales*/
+header{
+    background-color: black;
+    display:flex;
+    flex-flow:column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Estilos header*/
+@mixin header($flexDirection, $justifyContent, $padding, $hsize, $ssize, $tsize){
+    header{
+        h1{
+            font-size: $hsize;
+            margin-top: 50px;
+            text-align: center;
+            a{
+            text-decoration: none;
+            color: white;
+            }
+        }
+        p{
+            color:white;
+            margin: 0 10px 50px 10px;
+            font-style: italic;
+            font-size: $ssize;
+            text-align: center;
+        }
+        nav{
+            ul{
+                font-size: $tsize;
+                display:flex;
+                flex-direction: $flexDirection;
+                flex-wrap: nowrap;
+                justify-content: $justifyContent;
+                align-items: center;
+                text-align: center;
+                a{
+                    text-decoration: none;
+                    color:white;
+                    margin: 0 20px 10px 20px;
+                    li{
+                        width: 150px;
+                        padding: $padding;
+                        list-style-type: none;
+                        border-bottom: black solid 1px;
+                        transition: .5s;
+                    }
+                }
+                a:hover{
+                    li{
+                        border-bottom: white solid 1px;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+/*Adaptación a  diferentes pantallas*/
+@media screen and (min-width:0px){
+    @include header(column, center, 10px, 50px, 15px, 15px);
+}
+@media screen and (min-width:501px){
+    @include header(column, center, 20px, 100px, 25px, 20px);
+}
+@media screen and (min-width: 700px){
+    @include header(row, space-around, 20px, 120px, 30px, 20px)
+}

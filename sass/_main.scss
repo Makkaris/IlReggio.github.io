@@ -1,0 +1,206 @@
+/*Estilos generales*/
+main{
+    overflow-x: hidden;
+    section{
+        border-bottom: solid black 3px;
+    }
+}
+
+/*Carrousel de imagenes*/
+@mixin carrousel($width, $duration, $height, $translate){
+    .main__carrousel{
+        height: $height;
+        display:flex;
+        align-items: center;
+        white-space:nowrap;
+        overflow:visible;
+        animation-name: carrousel;
+        animation-duration: $duration;
+        animation-iteration-count:infinite;
+        animation-play-state:running;
+        animation-direction:alternate;
+        animation-timing-function: linear;
+        img{
+            margin: 0 20px 0 0;
+            width: $width;
+        }
+        @keyframes carrousel{
+            100%{
+                transform: translateX($translate);
+            }
+        }
+    }
+}
+
+/*Sección de la página Index para los productos*/
+@mixin seccionIndexProductos($flex-flow, $width, $height, $size,$margin, $justifyContent, $divWidth){
+    .main__botonProductos{
+        margin: 0 10% 0 10%;
+        display:flex;
+        flex-flow: $flex-flow;
+        align-items: center;
+        align-content: space-around;
+        justify-content: space-around;
+        height:300px;
+        div{
+            border:solid black 1px;
+            display:flex;
+            width: $divWidth;
+            justify-content: center;
+            align-items: center;
+            margin: $margin;
+            transition:.3s;
+            border-radius: 10px;
+            a{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                color:black;
+                width:100%;
+                height:$height;
+                font-size: $size;
+                transition: .3s;
+            }
+        }
+        div:hover{
+            background-color: black;
+            a{
+                color:white;
+            }
+        }
+    }
+}
+
+/*Sección de la página Index dedicada al contacto*/
+@mixin seccionIndexcontacto($pwidth, $font-size, $fwidth, $flex-flow){
+    .main__contacto{
+        display:flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        div{
+            display:flex;
+            flex-flow: column nowrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: space-around;
+            div{
+                margin: 20px 0 20px 0;
+                img{
+                    width: $fwidth;
+                }
+                display: flex;
+                flex-flow: $flex-flow;
+                font-size: 20px;
+                text-align: center;
+                p{
+                    width:$pwidth;
+                    color:black;
+                    font-size: $font-size;
+                }
+                a{
+                    width: $pwidth;
+                    color:black;
+                    text-decoration: none;
+                    font-size: $font-size;
+                }
+            }
+        }
+    }
+}
+
+/*Estilos de la página de Productos*/
+@mixin productosPaginaProductos($photoWidth){
+    .main__productos{
+        h2{
+            margin-bottom: 20px;
+        }
+        img{
+            width: $photoWidth;
+        }
+        .conservas img{
+            width:150px;
+        }
+        div{
+            margin:0 20px 0 20px;
+            display:flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            transition: .5s;
+            div{
+                display: flex;
+                flex-flow: column nowrap;
+                border:solid black 1px;
+                justify-content: space-around;
+                text-align: center;
+                align-items: center;
+                width:310px;
+                height:400px;
+                margin-bottom: 40px;
+            }
+            div:hover{
+                transform: scale(1.08 , 1.08);
+                box-shadow: 10px 10px rgba(0, 0, 0, 0.247);
+            }
+        }
+        .productos__colorPrecio{
+            color:rgb(40, 202, 40);
+            font-weight: bold;
+        }
+    }
+}
+
+/*Estilos de la página de Nosotros*/
+@mixin paginaNosotros($divWidth, $fontSize){
+    .main__2col{
+        display:flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+        div{
+            margin: 40px 0 40px 0;
+            width:$divWidth;/*80 40*/
+            text-align: center;
+            font-size: $fontSize;
+            line-height: 2;
+            img{
+                width:100%;
+                max-width:500px;
+            }
+        }
+    }
+}
+
+/*Estilos segun tamaño de pantalla*/
+@media screen and (min-width:0px){
+    @include carrousel(200px, 50s, 300px, -1900px);
+    @include seccionIndexProductos(column nowrap, 100%, 50px, 15px, 0, center, 100%);
+    @include seccionIndexcontacto(150px, 15px, 50px, column nowrap);
+    @include productosPaginaProductos(200px);
+    @include paginaNosotros(80%, 20px);
+    h2{
+        font-size: 30px;
+        text-align: center;
+        margin-top: 15px;
+    }
+}
+@media screen and (min-width:501px){
+    @include carrousel(400px, 60s, 550px, -3800px);
+    @include seccionIndexProductos(column nowrap, 100%, 50px, 20px, 0, center, 100%);
+    @include seccionIndexcontacto(300px, 20px, 80px, row nowrap);
+    @include productosPaginaProductos(300px);
+    @include paginaNosotros(80%, 25px);
+    h2{
+        font-size: 50px;
+        text-align: center;
+        margin-top: 25px;
+    }
+}
+@media screen and (min-width: 900px){
+    @include carrousel(400px, 60s, 600px, -3100px);
+    @include seccionIndexProductos(row wrap, 100%, 200px, 170%, 0, center, 23%);
+}
+@media screen and (min-width:1080px){
+    @include paginaNosotros(40%, 25px)
+}

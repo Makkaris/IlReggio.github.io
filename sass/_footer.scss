@@ -1,0 +1,50 @@
+/*Estilos del footer*/
+@mixin estiloFooter($flexFlow, $derechosFontSize, $paragraphFontSize, $listFontSize){
+    footer{
+        section{
+            display: flex;
+            flex-flow: $flexFlow;
+            background-color: rgb(109, 109, 109);
+            color:white;
+            div{
+                margin:auto;
+                a{
+                    display:block;
+                    color:white;
+                }
+                a:hover{
+                    color:black
+                }
+
+                p{
+                    font-size: $paragraphFontSize;
+                }
+                ul{
+                    list-style-type: none;
+                    li{
+                        border-bottom: white solid 1px;
+                        width:200px;
+                        margin: 5px 0 5px 0;
+                        font-size: $listFontSize;
+                    }
+                }
+            }
+        }
+        .derechos{
+            color:white;
+            background-color: black;
+            height:auto;
+            font-size: $derechosFontSize;
+            text-align:center;
+        }
+    }
+        
+}
+
+/*Adaptación a  diferentes pantallas*/
+@media screen and (min-width:0px){
+    @include estiloFooter(column wrap, 15px, 20px, 15px);
+}
+@media screen and (min-width:630px){
+    @include estiloFooter(row nowrap, 20px, 20px, 15px);
+}
